@@ -1,0 +1,3 @@
+The demo currently uses /static/assets/bai-logo.svg.
+To use the official BCIEA logo, copy your logo into this assets folder and update the <img class="brand-logo"> src in index.html, portal.html and admin.html.
+Recommended: SVG or transparent PNG, around 420x120 for a horizontal logo.

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#20282f"><title>BCIEA Care AI — Staff Dashboard</title><link rel="stylesheet" href="/static/ui.css"><link rel="stylesheet" href="/static/ultra.css">
+</head>
+<body>
+<div class="login-gate" id="gate"><div class="login-card"><img class="brand-logo" src="/static/assets/bai-logo.svg" alt="BAI BCIEA Care AI"><h2>Staff Command Centre</h2><p>Authorised BCIEA demo staff only. Enter the ADMIN_KEY configured in your hosting environment.</p><input id="key" type="password" placeholder="Admin key"><button class="btn primary" id="loginBtn" style="width:100%;margin-top:12px">Enter dashboard</button><p><a href="/">← Back to public website</a></p></div></div>
+
+<div class="admin-shell hidden" id="app">
+  <aside class="admin-side" id="adminSide">
+    <div class="side-top"><a href="/"><img class="brand-logo" src="/static/assets/bai-logo.svg" alt="BAI BCIEA Care AI"></a><button class="side-collapse" id="adminClose">✕</button></div>
+    <div class="side-label">Command centre</div>
+    <nav class="admin-menu">
+      <button class="admin-link active" data-view="overview">▣ <span>Overview</span></button>
+      <button class="admin-link" data-view="conversations">💬 <span>Conversations</span></button>
+      <button class="admin-link" data-view="referrals">🤝 <span>Cases & referrals</span></button>
+      <button class="admin-link" data-view="messages">✉ <span>Messages</span></button>
+      <button class="admin-link" data-view="patients">👥 <span>Demo cases</span></button>
+      <button class="admin-link" data-view="content">▦ <span>Content & media</span></button>
+      <button class="admin-link" data-view="audit">⌁ <span>Audit log</span></button>
+    </nav>
+    <div class="side-bottom"><a class="admin-link" href="/portal">↗ <span>Open AI portal</span></a><a class="admin-link" href="/">⌂ <span>Public website</span></a></div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-top"><button class="icon-btn mobile-menu-btn" id="adminMenu">☰</button><b>BCIEA Care AI</b><span class="muted" style="font-size:12px">Staff dashboard</span><span style="flex:1"></span><span class="muted" id="updated" style="font-size:11px"></span><button class="btn small" id="refreshBtn">Refresh</button></header>
+    <div class="admin-content">
+      <section class="admin-section active" id="view-overview">
+        <div class="admin-page-head"><div><h1>Dashboard</h1><p>What is happening across the BCIEA Care AI demo.</p></div><span class="status-pill education">Demo environment</span></div>
+        <div class="kpi-grid" id="kpis"></div>
+        <div class="admin-grid-2"><div class="panel"><h3>Triage mix</h3><div id="triageBars"></div></div><div class="panel"><h3>Barriers to care</h3><div id="barrierBars"></div></div></div>
+        <div class="admin-grid-2"><div class="panel"><h3>Recent conversations</h3><div id="recentConvs"></div></div><div class="panel"><h3>Recent referrals</h3><div id="recentRefs"></div></div></div>
+      <div class="panel u-panel"><h3 style="margin:0">National coverage network</h3><p class="muted" style="margin:4px 0 0">How community signals reach AI support across districts and sectors.</p><div class="u-stage"><canvas class="rwmap" aria-label="Rotating 3D map of Rwanda showing data flowing from villages through sectors and district hubs to the AI core in Kigali"></canvas>
+<div class="u-legend"><span style="--c:#ffd7eb">Village reports</span><span style="--c:#ff77b6">Sector health workers</span><span style="--c:#fff">District hubs</span><span style="--c:#ff2f92">AI support core</span></div>
+<div class="u-kpis"><div><b>30</b>districts</div><div><b>416</b>sectors</div><div><b>14,837</b>villages</div><div><b data-rw-count>0</b>simulated signals routed</div></div></div>
+<p class="u-note">Illustrative simulation: outline and hub positions are stylised, and traffic is not real patient data. Drag to rotate.</p></div>
+      </section>
+
+      <section class="admin-section" id="view-conversations">
+        <div class="admin-page-head"><div><h1>Conversations</h1><p>Review recent demo conversations and their triage summaries.</p></div></div>
+        <div class="panel" id="conversationDetail"><p class="muted">Select “View” on a conversation to inspect its messages.</p></div>
+        <div class="panel" style="margin-top:14px"><div class="table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>Case</th><th>Language</th><th>Triage</th><th>Risk</th><th>Messages</th><th>Last message</th><th></th></tr></thead><tbody id="conversationRows"></tbody></table></div></div>
+      </section>
+
+      <section class="admin-section" id="view-referrals">
+        <div class="admin-page-head"><div><h1>Cases & referrals</h1><p>Prioritised by urgency, risk score and age. Update status and navigator notes here.</p></div></div>
+        <div class="panel"><div class="table-wrap"><table class="admin-table"><thead><tr><th>#</th><th>Case</th><th>Priority</th><th>Risk</th><th>SLA</th><th>Reason</th><th>Status</th><th>Facility</th><th>Notes</th><th></th></tr></thead><tbody id="referralRows"></tbody></table></div></div>
+      </section>
+
+      <section class="admin-section" id="view-messages">
+        <div class="admin-page-head"><div><h1>Message centre</h1><p>Create announcements, follow-up reminders or campaign messages. In this MVP, messages are stored as drafts/sent records; no external SMS, WhatsApp or email provider is connected yet.</p></div></div>
+        <div class="compose-grid">
+          <div class="panel"><h3>Compose message</h3><div class="message-form"><input id="bTitle" placeholder="Message title"><select id="bAudience"><option value="all">All demo users</option><option value="navigators">Navigators</option><option value="patients">Patient cases</option><option value="community">Community audience</option></select><select id="bChannel"><option value="in_app">In-app</option><option value="sms_demo">SMS (demo record)</option><option value="whatsapp_demo">WhatsApp (demo record)</option><option value="email_demo">Email (demo record)</option></select><textarea id="bBody" placeholder="Write the message…"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="saveDraft">Save draft</button><button class="btn primary" id="sendDemo">Mark as sent (demo)</button></div><p class="muted" id="broadcastStatus" style="font-size:12px"></p></div></div>
+          <div class="panel"><h3>Recent messages</h3><div class="broadcast-list" id="broadcastList"></div></div>
+        </div>
+      </section>
+
+      <section class="admin-section" id="view-patients">
+        <div class="admin-page-head"><div><h1>Demo cases</h1><p>Privacy-minimised case list. This view intentionally avoids displaying names and phone numbers.</p></div></div>
+        <div class="panel"><div class="table-wrap"><table class="admin-table"><thead><tr><th>Case ID</th><th>Language</th><th>Consent</th><th>Name stored?</th><th>Phone stored?</th><th>Referrals</th><th>Created</th></tr></thead><tbody id="patientRows"></tbody></table></div></div>
+      </section>
+
+      <section class="admin-section" id="view-content">
+        <div class="admin-page-head"><div><h1>Content & media</h1><p>Manage the public experience by replacing the demo assets in <code>app/static/assets</code>. A full CMS can be connected in the next phase.</p></div></div>
+        <div class="admin-grid-2"><div class="panel"><h3>Logo</h3><img src="/static/assets/bai-logo.svg" style="max-width:260px" alt="Current logo"><p class="muted">Current file: <code>/static/assets/bai-logo.svg</code>. Replace or update the path in the HTML when you add the official BCIEA logo.</p></div><div class="panel"><h3>Media spaces ready</h3><p class="muted">The public website now includes a hero visual, three story/education image cards, a featured-video poster area, impact numbers, and eight health/support categories.</p><a class="btn" href="/" target="_blank">Preview website ↗</a></div></div>
+      </section>
+
+      <section class="admin-section" id="view-audit">
+        <div class="admin-page-head"><div><h1>Audit log</h1><p>Recent demo system actions, referrals and message records.</p></div></div><div class="panel"><div class="audit-list" id="auditList"></div></div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="/static/ui.js"></script>
+<script>
+const $=id=>document.getElementById(id);let adminKey='';const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));const H=()=>({'X-Admin-Key':adminKey,'Content-Type':'application/json'});const colors={education:'#22b573',needs_assessment:'#f3a61e',urgent:'#ef6c43',emergency:'#dc3658'};
+async function api(url,opts={}){opts.headers={...(opts.headers||{}),...H()};const r=await fetch(url,opts);if(r.status===401){alert('Your admin key is no longer accepted.');location.reload();throw new Error('unauthorised')}const j=await r.json();if(!r.ok)throw new Error(j.detail||'Request failed');return j}
+async function login(){adminKey=$('key').value.trim();if(!adminKey)return;try{await api('/api/admin/stats');sessionStorage.setItem('bciea_admin_key',adminKey);$('gate').classList.add('hidden');$('app').classList.remove('hidden');await refreshAll();setInterval(refreshAll,45000)}catch(e){alert('Invalid admin key')}}
+$('loginBtn').onclick=login;$('key').onkeydown=e=>{if(e.key==='Enter')login()};
+function switchView(v){document.querySelectorAll('.admin-section').forEach(x=>x.classList.remove('active'));$('view-'+v).classList.add('active');document.querySelectorAll('.admin-link[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));$('adminSide').classList.remove('open')}
+document.querySelectorAll('.admin-link[data-view]').forEach(b=>b.onclick=()=>switchView(b.dataset.view));$('adminMenu').onclick=()=>$('adminSide').classList.add('open');$('adminClose').onclick=()=>$('adminSide').classList.remove('open');$('refreshBtn').onclick=refreshAll;
+function bars(obj,palette){const entries=Object.entries(obj||{});if(!entries.length)return '<p class="muted">No data yet.</p>';const max=Math.max(1,...entries.map(x=>x[1]));return entries.map(([k,v])=>`<div class="bar-row"><span>${esc(k.replaceAll('_',' '))}</span><span class="bar-track"><i class="bar-fill" style="width:${Math.max(3,v/max*100)}%;background:${palette?.[k]||'linear-gradient(90deg,#ff2f92,#7048d7)'}"></i></span><b>${v}</b></div>`).join('')}
+async function loadStats(){const s=await api('/api/admin/stats');const cards=[['Patient cases',s.patients,'Consented records'],['Conversations',s.conversations,'AI interactions'],['Messages',s.messages,'Stored chat messages'],['Pending referrals',s.pending_referrals,'Need follow-up'],['Avg risk',s.avg_risk,'Demo triage score']];$('kpis').innerHTML=cards.map(x=>`<div class="kpi"><span>${esc(x[0])}</span><strong>${x[1]}</strong><small>${esc(x[2])}</small></div>`).join('');$('triageBars').innerHTML=bars(s.triage,colors);$('barrierBars').innerHTML=bars(s.barriers);}
+async function loadConversations(){const rows=await api('/api/admin/conversations');$('conversationRows').innerHTML=rows.map(x=>`<tr><td>#${x.id}</td><td>${esc(x.patient_public_id||'Anonymous')}</td><td>${esc(x.language)}</td><td><span class="status-pill ${esc(x.triage_level)}">${esc(x.triage_level.replaceAll('_',' '))}</span></td><td>${x.risk_score}</td><td>${x.message_count}</td><td>${esc(x.last_message)}</td><td><button class="btn small" onclick="viewConversation(${x.id})">View</button></td></tr>`).join('')||'<tr><td colspan="8">No conversations yet.</td></tr>';$('recentConvs').innerHTML=rows.slice(0,5).map(x=>`<div class="audit-item"><b>#${x.id} · ${esc(x.triage_level.replaceAll('_',' '))}</b><br><span class="muted">${esc(x.last_message||'No message')}</span></div>`).join('')||'<p class="muted">No conversations yet.</p>'}
+async function viewConversation(id){const rows=await api('/api/admin/conversations/'+id+'/messages');$('conversationDetail').innerHTML='<h3>Conversation #'+id+'</h3>'+rows.map(x=>`<div class="audit-item"><b>${esc(x.role)}</b><br>${esc(x.content)}<br><span class="muted">${new Date(x.created_at).toLocaleString()}</span></div>`).join('');switchView('conversations');scrollTo({top:0,behavior:'smooth'})}
+async function loadReferrals(){const rows=await api('/api/admin/referrals');$('referralRows').innerHTML=rows.map(x=>{const sla=x.hours_left===null?'—':x.hours_left<0?Math.abs(x.hours_left)+'h overdue':x.hours_left+'h left';return `<tr><td>#${x.id}</td><td>${esc(x.patient_public_id)}</td><td><span class="status-pill ${esc(x.priority)}">${esc(x.priority.replaceAll('_',' '))}</span></td><td>${x.risk_score}</td><td>${esc(sla)}</td><td>${esc(x.reason)}</td><td><select id="status${x.id}">${['pending','contacted','scheduled','completed','closed'].map(o=>`<option ${o===x.status?'selected':''}>${o}</option>`).join('')}</select></td><td><input id="facility${x.id}" value="${esc(x.facility||'')}" placeholder="Facility"></td><td><input id="note${x.id}" value="${esc(x.navigator_notes||'')}" placeholder="Navigator note"></td><td><button class="btn small" onclick="updateReferral(${x.id})">Save</button></td></tr>`}).join('')||'<tr><td colspan="10">No referrals yet.</td></tr>';$('recentRefs').innerHTML=rows.slice(0,5).map(x=>`<div class="audit-item"><b>#${x.id} · ${esc(x.priority.replaceAll('_',' '))}</b><br><span class="muted">${esc(x.patient_public_id)} · ${esc(x.status)}</span></div>`).join('')||'<p class="muted">No referrals yet.</p>'}
+async function updateReferral(id){await api('/api/admin/referrals/'+id,{method:'PATCH',body:JSON.stringify({status:$('status'+id).value,facility:$('facility'+id).value,navigator_notes:$('note'+id).value})});await loadReferrals()}
+async function loadPatients(){const rows=await api('/api/admin/patients');$('patientRows').innerHTML=rows.map(x=>`<tr><td>${esc(x.public_id)}</td><td>${esc(x.preferred_language)}</td><td>${x.consent_given?'Yes':'No'}</td><td>${x.has_name?'Yes':'No'}</td><td>${x.has_phone?'Yes':'No'}</td><td>${x.referrals}</td><td>${new Date(x.created_at).toLocaleString()}</td></tr>`).join('')||'<tr><td colspan="7">No cases yet.</td></tr>'}
+async function loadBroadcasts(){const rows=await api('/api/admin/broadcasts');$('broadcastList').innerHTML=rows.map(x=>`<div class="broadcast-item"><strong>${esc(x.title)}</strong><div>${esc(x.body)}</div><div class="broadcast-meta">${esc(x.audience)} · ${esc(x.channel)} · ${esc(x.status)} · ${new Date(x.created_at).toLocaleString()}</div></div>`).join('')||'<p class="muted">No messages saved yet.</p>'}
+async function saveBroadcast(sendNow){const title=$('bTitle').value.trim(),body=$('bBody').value.trim();if(!title||!body){$('broadcastStatus').textContent='Add a title and message first.';return}try{const j=await api('/api/admin/broadcasts',{method:'POST',body:JSON.stringify({title,body,audience:$('bAudience').value,channel:$('bChannel').value,send_now:sendNow})});$('broadcastStatus').textContent=sendNow?'Saved as sent in the demo message log. External delivery is not connected yet.':'Draft saved.';$('bTitle').value='';$('bBody').value='';await loadBroadcasts();await loadAudit()}catch(e){$('broadcastStatus').textContent='Could not save message.'}}
+$('saveDraft').onclick=()=>saveBroadcast(false);$('sendDemo').onclick=()=>saveBroadcast(true);
+async function loadAudit(){const rows=await api('/api/admin/audit');$('auditList').innerHTML=rows.map(x=>`<div class="audit-item"><b>${esc(x.action)}</b> · ${esc(x.entity_type||'')} ${esc(x.entity_id||'')}<br><span class="muted">${esc(x.detail||'')} · ${new Date(x.created_at).toLocaleString()}</span></div>`).join('')||'<p class="muted">No audit activity yet.</p>'}
+async function refreshAll(){try{await Promise.all([loadStats(),loadConversations(),loadReferrals(),loadPatients(),loadBroadcasts(),loadAudit()]);$('updated').textContent='Updated '+new Date().toLocaleTimeString()}catch(e){console.error(e)}}
+const saved=sessionStorage.getItem('bciea_admin_key');if(saved){adminKey=saved;$('key').value=saved;login()}
+</script><script src="/static/ultra.js"></script>
+<script src="/static/map3d.js"></script>
+</body></html>

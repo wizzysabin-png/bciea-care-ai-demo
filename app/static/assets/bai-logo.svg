@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-labelledby="t d">
+  <title id="t">BAI — BCIEA Care AI</title><desc id="d">A pink ribbon inspired BAI logo for BCIEA Care AI.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff2f92"/><stop offset="1" stop-color="#a80f66"/></linearGradient>
+    <filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#b50d6d" flood-opacity=".22"/></filter>
+  </defs>
+  <g transform="translate(8 10)" filter="url(#s)">
+    <path fill="url(#g)" d="M54 5c-9 8-16 18-20 29-8 21-5 42 10 61 5 7 11 13 18 19 7-7 12-15 15-23-8-7-14-15-18-23-7-14-7-29-2-43 3-8 6-14 10-20-4-1-8-1-13 0z"/>
+    <path fill="#ff77b6" d="M72 5c9 8 16 18 20 29 8 21 5 42-10 61-5 7-11 13-18 19-7-7-12-15-15-23 8-7 14-15 18-23 7-14 7-29 2-43-3-8-6-14-10-20 4-1 8-1 13 0z"/>
+    <circle cx="63" cy="20" r="8" fill="#fff"/>
+    <path d="M38 58c9 2 17 7 25 15 8-8 16-13 25-15" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <text x="118" y="65" font-family="Inter,Arial,sans-serif" font-size="57" font-weight="850" letter-spacing="-3" fill="#111827">B</text>
+  <text x="158" y="65" font-family="Inter,Arial,sans-serif" font-size="57" font-weight="850" letter-spacing="-3" fill="url(#g)">AI</text>
+  <text x="120" y="91" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2.5" fill="#8a3766">BCIEA CARE AI</text>
+</svg>

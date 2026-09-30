@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1f1721">
+  <title>AI Portal — BCIEA Care AI</title><link rel="stylesheet" href="/static/ui.css">
+<link rel="stylesheet" href="/static/ultra.css">
+</head>
+<body class="app-body">
+<div class="app-shell">
+  <aside class="side" id="side">
+    <div class="side-top"><a href="/"><img class="brand-logo" src="/static/assets/bai-logo.svg" alt="BAI BCIEA Care AI"></a><button class="side-collapse" id="sideClose" aria-label="Close menu">✕</button></div>
+    <button class="side-link active" id="newChat"><span class="ico">＋</span> New chat</button>
+    <div class="side-label">Recent conversations</div>
+    <div class="history-list" id="history"></div>
+    <div class="side-label">Explore</div>
+    <nav class="side-nav">
+      <button class="side-link topic" data-prompt="What should I know about breast health and breast awareness?"><span class="ico">🎀</span> Breast health basics</button>
+      <button class="side-link topic" data-prompt="Explain breast cancer screening and early detection in simple language."><span class="ico">🔎</span> Screening</button>
+      <button class="side-link topic" data-prompt="I noticed a breast change. What information should I share with a healthcare professional?"><span class="ico">❤️</span> Symptoms & changes</button>
+      <button class="side-link topic" data-prompt="I feel afraid about getting checked. Can you help me think through the next step?"><span class="ico">🤍</span> Emotional support</button>
+      <button class="side-link topic" data-prompt="Give me general healthy living and nutrition information for someone affected by breast cancer."><span class="ico">🥗</span> Healthy living</button>
+      <button class="side-link" id="openCare"><span class="ico">🤝</span> Human navigator</button>
+      <a class="side-link" href="/#media"><span class="ico">▶</span> Videos & media</a>
+      <button class="side-link" id="privacyBtn"><span class="ico">🔐</span> Privacy & consent</button>
+    </nav>
+    <div class="side-bottom"><div class="safe-note"><b>Medical safety</b><br>This assistant provides education and navigation. It cannot diagnose or rule out cancer. Urgent symptoms need appropriate in-person care.</div></div>
+  </aside>
+
+  <main class="app-main">
+    <header class="app-top">
+      <button class="icon-btn mobile-menu-btn" id="mobileMenu" aria-label="Open menu">☰</button>
+      <div class="app-title">BCIEA Care AI</div><span class="muted" style="font-size:12px">Patient portal</span><span class="sp"></span>
+      <button class="btn small" id="careBtn">Care plan</button>
+      <select id="lang" class="language-select"><option value="rw">Kinyarwanda</option><option value="en">English</option></select>
+      <a class="icon-btn" href="/" title="Website">⌂</a>
+    </header>
+
+    <div class="app-chat-wrap">
+      <section class="chat-main">
+        <div class="chat-scroll" id="chat">
+          <div class="welcome" id="welcome">
+            <div class="bot-avatar">🎀</div>
+            <h1>Hello! I’m <span class="gradient-text">BCIEA Care AI</span></h1>
+            <p>Ask about breast health, screening, symptoms, emotional support, healthy living or navigation. You can type naturally or use the microphone if your browser supports it.</p>
+            <div class="quick-grid" id="quickGrid">
+              <button class="quick">What are common breast changes I should have checked?</button>
+              <button class="quick">Where do I start if I want breast screening?</button>
+              <button class="quick">I am worried and need help understanding my next step.</button>
+              <button class="quick">Explain mammography in simple language.</button>
+              <button class="quick">How can family support someone during breast cancer care?</button>
+              <button class="quick">What does breast awareness mean?</button>
+            </div>
+          </div>
+        </div>
+        <div class="composer-zone">
+          <div class="composer">
+            <textarea id="message" rows="1" placeholder="Type your message here…"></textarea>
+            <div class="composer-actions">
+              <button class="icon-btn" id="voice" title="Use microphone">🎤</button>
+              <button class="icon-btn" id="saveChat" title="Save conversation locally">💾</button>
+              <span class="sp"></span><button class="send-btn" id="send" title="Send">➤</button>
+            </div>
+          </div>
+          <p class="composer-note">BCIEA Care AI can make mistakes. It is for education and navigation, not diagnosis or emergency care.</p>
+        </div>
+      </section>
+
+      <aside class="care-drawer" id="drawer" aria-label="Care plan panel">
+        <div class="drawer-top"><h3>Care plan & navigation</h3><button class="drawer-close" id="drawerClose">✕</button></div>
+        <div class="drawer-card">
+          <h4>Live urgency check</h4>
+          <div class="risk-ring" id="gauge"><div><div><strong id="sc">0</strong><span id="lv">waiting</span></div></div></div>
+          <p class="drawer-status" style="text-align:center">Suggested timeframe: <b id="tf">—</b></p><div class="tag-wrap" id="sig"></div>
+        </div>
+        <div class="drawer-card hidden" id="planb"><h4>Your next steps</h4><ol class="plan-list" id="plan"></ol><button class="btn primary" id="navRequest" style="width:100%">Request human navigator</button><p class="drawer-status" id="refStatus"></p></div>
+        <div class="drawer-card"><h4>Optional private case</h4><p class="drawer-status">You can use general information without creating a case. Create one only if you want navigation follow-up.</p>
+          <div class="form-field"><input id="name" placeholder="Name (optional)"></div><div class="form-field"><input id="phone" placeholder="Phone (optional)"></div>
+          <label class="check"><input type="checkbox" id="consent"><span>I consent to creating a case record for navigation in this demo.</span></label>
+          <button class="btn" id="mk" style="width:100%;margin-top:11px">Create case</button><p class="drawer-status" id="pid"></p>
+        </div>
+        <div class="drawer-card u-mini"><h4>Your message, across Rwanda</h4><canvas class="rwmap" data-compact aria-label="Mini 3D map of Rwanda"></canvas><p class="drawer-status">Each message you send lights a path from a village to the AI core. Simulated view, no personal data is shown.</p></div>
+        <div class="drawer-card"><h4>Privacy reminder</h4><p class="drawer-status">For this free demo, use fictional/test information only. Do not submit real patient medical data on temporary demo hosting.</p></div>
+      </aside>
+    </div>
+  </main>
+</div>
+<script src="/static/ui.js"></script>
+<script>
+const $=id=>document.getElementById(id);let cid=null,pid=null,last=null,currentLocalId=null;
+const langText={rw:{hello:'Muraho! Ndi BCIEA Care AI. Mbwira ikibazo cyawe ku buzima bw’amabere cyangwa aho ukeneye ubufasha. Sinshobora gusuzuma kanseri, ariko nshobora gutanga amakuru no kukuyobora ku ntambwe ikurikira.'},en:{hello:'Hello! I’m BCIEA Care AI. Tell me what you would like to know about breast health or what support you need. I cannot diagnose cancer, but I can provide information and help you understand the next step.'}};
+function msg(text,who,save=true){$('welcome')?.remove();const row=document.createElement('div');row.className='message-row '+who;const av=document.createElement('div');av.className='message-avatar';av.textContent=who==='user'?'U':'AI';const b=document.createElement('div');b.className='bubble';b.textContent=text;if(who==='user'){row.append(b,av)}else{row.append(av,b)}$('chat').append(row);$('chat').scrollTop=$('chat').scrollHeight;if(save)persist();return b}
+function typing(){const row=document.createElement('div');row.className='message-row bot';row.innerHTML='<div class="message-avatar">AI</div><div class="bubble"><span class="typing"><i></i><i></i><i></i></span></div>';$('chat').append(row);$('chat').scrollTop=$('chat').scrollHeight;return row}
+function messagesForSave(){return [...$('chat').querySelectorAll('.message-row')].map(r=>({who:r.classList.contains('user')?'user':'bot',text:r.querySelector('.bubble')?.textContent||''})).filter(x=>x.text&&x.text!=='•••')}
+function getHistory(){try{return JSON.parse(localStorage.getItem('bciea_chat_history')||'[]')}catch{return[]}}
+function setHistory(v){localStorage.setItem('bciea_chat_history',JSON.stringify(v.slice(0,20)));renderHistory()}
+function persist(){const ms=messagesForSave();if(!ms.length)return;const h=getHistory();if(!currentLocalId)currentLocalId='c'+Date.now();const title=(ms.find(x=>x.who==='user')?.text||'New conversation').slice(0,44);const item={id:currentLocalId,title,updated:Date.now(),messages:ms,language:$('lang').value};const next=[item,...h.filter(x=>x.id!==currentLocalId)].sort((a,b)=>b.updated-a.updated);setHistory(next)}
+function renderHistory(){const h=getHistory();$('history').innerHTML='';if(!h.length){const e=document.createElement('div');e.className='history-item';e.textContent='No saved chats yet';$('history').append(e);return}h.slice(0,7).forEach(x=>{const b=document.createElement('button');b.className='history-item';b.textContent=x.title;b.onclick=()=>loadLocal(x.id);$('history').append(b)})}
+function loadLocal(id){const x=getHistory().find(y=>y.id===id);if(!x)return;currentLocalId=x.id;cid=null;last=null;$('lang').value=x.language||'rw';$('chat').innerHTML='';x.messages.forEach(m=>msg(m.text,m.who,false));closeSide()}
+function newChat(){currentLocalId=null;cid=null;last=null;$('chat').innerHTML='';const w=document.createElement('div');w.className='welcome';w.id='welcome';w.innerHTML='<div class="bot-avatar">🎀</div><h1>New conversation</h1><p>Ask naturally in Kinyarwanda or English. Your recent chats can be saved locally on this device.</p><div class="quick-grid" id="quickGrid"><button class="quick">What are common breast changes I should have checked?</button><button class="quick">Where do I start if I want breast screening?</button><button class="quick">I am worried and need help understanding my next step.</button></div>';$('chat').append(w);bindQuick();$('sc').textContent='0';$('lv').textContent='waiting';$('tf').textContent='—';$('sig').innerHTML='';$('planb').classList.add('hidden');closeSide()}
+async function send(){const t=$('message').value.trim();if(!t)return;msg(t,'user');$('message').value='';autoSize();const wait=typing();try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:t,language:$('lang').value,conversation_id:cid,patient_public_id:pid})});const j=await r.json();wait.remove();if(!r.ok)throw new Error(j.detail||'Request failed');cid=j.conversation_id;last=j;msg(j.response,'bot');showCare(j)}catch(e){wait.remove();msg('I could not connect to the assistant. Please try again.','bot')}}
+function showCare(j){const colors={education:'#22b573',needs_assessment:'#f3a61e',urgent:'#ef6c43',emergency:'#dc3658'};$('gauge').style.setProperty('--score',j.risk_score||0);$('gauge').style.setProperty('--ring',colors[j.triage_level]||'#ddd');$('sc').textContent=j.risk_score||0;$('lv').textContent=(j.triage_level||'waiting').replaceAll('_',' ');$('tf').textContent=j.timeframe||'—';$('sig').innerHTML='';[...(j.signals||[]),...(j.barriers||[]).map(x=>'Barrier: '+x)].forEach(s=>{const x=document.createElement('span');x.className='tag';x.textContent=s;$('sig').append(x)});$('planb').classList.remove('hidden');$('plan').innerHTML='';(j.plan||[]).forEach(p=>{const li=document.createElement('li');li.textContent=p;$('plan').append(li)});$('navRequest').classList.toggle('hidden',!j.human_handoff_recommended||j.triage_level==='emergency')}
+function bindQuick(){document.querySelectorAll('.quick').forEach(b=>b.onclick=()=>{$('message').value=b.textContent;send()})}
+function openDrawer(){$('drawer').classList.add('open')}function closeDrawer(){$('drawer').classList.remove('open')}function closeSide(){$('side').classList.remove('open')}
+$('send').onclick=send;$('message').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});$('message').addEventListener('input',autoSize);function autoSize(){$('message').style.height='auto';$('message').style.height=Math.min(150,$('message').scrollHeight)+'px'}
+$('newChat').onclick=newChat;$('careBtn').onclick=openDrawer;$('openCare').onclick=()=>{openDrawer();closeSide()};$('drawerClose').onclick=closeDrawer;$('mobileMenu').onclick=()=>$('side').classList.add('open');$('sideClose').onclick=closeSide;$('saveChat').onclick=()=>{persist();$('saveChat').textContent='✓';setTimeout(()=>$('saveChat').textContent='💾',1200)};
+document.querySelectorAll('.topic').forEach(b=>b.onclick=()=>{$('message').value=b.dataset.prompt;closeSide();send()});
+$('privacyBtn').onclick=()=>{openDrawer();closeSide();$('refStatus').textContent='Privacy: create a case only with consent. Use fictional information in this free demo.'};
+$('mk').onclick=async()=>{if(!$('consent').checked){$('pid').textContent='Consent is required before a case can be stored.';return}const r=await fetch('/api/patients',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({full_name:$('name').value||null,phone:$('phone').value||null,preferred_language:$('lang').value,consent_given:true})});const j=await r.json();if(!r.ok){$('pid').textContent='Could not create case.';return}pid=j.public_id;$('pid').textContent='Case ID: '+pid+' — keep this ID for the demo.'};
+$('navRequest').onclick=async()=>{if(!last){$('refStatus').textContent='Have a conversation first so the referral can include the current care plan.';return}if(!pid){$('refStatus').textContent='Create a consented case above first, then request a navigator.';return}const r=await fetch('/api/referrals',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({patient_public_id:pid,reason:'AI navigation request: '+(last.signals||[]).join(', ')+((last.barriers||[]).length?' | barriers: '+last.barriers.join(', '):''),priority:last.triage_level,risk_score:last.risk_score})});const j=await r.json();$('refStatus').textContent=r.ok?'Referral #'+j.id+' created for the staff dashboard.':'Could not create referral.'};
+$('lang').onchange=()=>{if(!$('chat').querySelector('.message-row'))msg(langText[$('lang').value].hello,'bot')};
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(SR){const rec=new SR();$('voice').onclick=()=>{rec.lang=$('lang').value==='rw'?'rw-RW':'en-US';rec.start();$('voice').textContent='●'};rec.onresult=e=>{$('voice').textContent='🎤';$('message').value=e.results[0][0].transcript;autoSize()};rec.onend=()=>{$('voice').textContent='🎤'};rec.onerror=()=>{$('voice').textContent='🎤';msg('Voice input is not available right now. You can continue by typing.','bot')}}else{$('voice').disabled=true;$('voice').title='Voice recognition is not supported in this browser'}
+renderHistory();bindQuick();
+const topic=new URLSearchParams(location.search).get('topic');const topicMap={basics:'What should I know about breast health and breast awareness?',screening:'Explain breast cancer screening and early detection in simple language.',symptoms:'I noticed a breast change. What information should I share with a healthcare professional?',support:'I am feeling worried about breast health. How can I manage the fear and still take the next step?',nutrition:'Give me general healthy living and nutrition information related to breast health.',survivor:'How can families and communities support breast cancer patients and survivors?',navigator:'I need help understanding how to reach the right care or navigator.',privacy:'How does privacy and consent work in this BCIEA Care AI demo?'};if(topicMap[topic]){$('message').value=topicMap[topic]}
+</script>
+<script src="/static/ultra.js"></script>
+<script src="/static/map3d.js"></script>
+</body></html>

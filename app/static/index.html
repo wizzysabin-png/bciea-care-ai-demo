@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ff2f92">
+  <title>BCIEA Care AI — Breast Health Navigation</title>
+  <meta name="description" content="BCIEA Care AI is a breast-health education and patient-navigation prototype for Rwanda, with Kinyarwanda and English support.">
+  <link rel="stylesheet" href="/static/ui.css">
+<link rel="stylesheet" href="/static/ultra.css">
+</head>
+<body>
+  <div class="topbar">🎀 Breast health matters. <b>Early action and professional assessment can save time and lives.</b></div>
+  <nav class="site-nav" id="siteNav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/"><img class="brand-logo" src="/static/assets/bai-logo.svg" alt="BAI BCIEA Care AI logo"></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#support">Support</a><a href="#impact">Impact</a><a href="#media">Media</a><a href="#how">How it works</a><a href="#network">Network</a><a href="#safety">Safety</a><a href="/admin">Staff</a>
+      </div>
+      <div class="nav-actions"><a class="btn soft" href="#media">Explore</a><a class="btn primary" href="/portal">Chat now →</a></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">☰</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">AI for a healthier, stronger Rwanda</span>
+        <h1>Your trusted companion for <span class="gradient-text">breast health</span> support.</h1>
+        <p>Ask questions, understand symptoms, learn about screening, and connect to the next level of care in simple language. BCIEA Care AI is designed for Kinyarwanda and English and can support voice input in compatible browsers.</p>
+        <div class="hero-actions"><a class="btn primary" href="/portal">Start chatting →</a><a class="btn" href="#support">See what it can do</a></div>
+        <div class="trust-row"><span>Human handoff</span><span>Privacy first</span><span>No autonomous diagnosis</span></div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="hero-frame"><img src="/static/assets/care-team.svg" alt="Illustration of compassionate breast health support"></div>
+        <div class="float-card float-a"><span class="orb-dot">💬</span>Natural conversation<small>English + Kinyarwanda</small></div>
+        <div class="float-card float-b"><span class="orb-dot">🩺</span>Care navigation<small>From question to next step</small></div>
+        <div class="float-card float-c"><span class="orb-dot">🤝</span>Human support<small>Navigator referral when needed</small></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="impact-strip" id="impact">
+    <div class="wrap impact-grid reveal">
+      <div class="impact-item"><div class="impact-icon">🩺</div><div><strong>200</strong><span>People referred for screening</span></div></div>
+      <div class="impact-item"><div class="impact-icon">📍</div><div><strong>49</strong><span>Pilot villages engaged</span></div></div>
+      <div class="impact-item"><div class="impact-icon">🌍</div><div><strong>3</strong><span>Languages supported in programmes</span></div></div>
+      <div class="impact-item"><div class="impact-icon">⏱️</div><div><strong>24/7</strong><span>Digital access potential</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="support">
+    <div class="wrap">
+      <div class="reveal"><span class="eyebrow">What you can ask</span><h2 class="section-title">One assistant, many ways to <span class="gradient-text">support you.</span></h2><p class="section-copy">Choose a topic to start a conversation. These categories help organize the experience without replacing professional medical evaluation.</p></div>
+      <div class="category-grid">
+        <article class="category-card card lift reveal"><div class="category-icon">🎀</div><h3>Breast Cancer Basics</h3><p>Learn common terms, breast awareness, possible warning signs, and why professional assessment matters.</p><a href="/portal?topic=basics">Ask about basics →</a></article>
+        <article class="category-card card lift reveal"><div class="category-icon">🔎</div><h3>Screening & Early Detection</h3><p>Understand screening, clinical breast exams, mammography, and questions to prepare before an appointment.</p><a href="/portal?topic=screening">Explore screening →</a></article>
+        <article class="category-card card lift reveal"><div class="category-icon">❤️</div><h3>Symptoms & Changes</h3><p>Describe a breast change in your own words and receive a cautious next-step recommendation.</p><a href="/portal?topic=symptoms">Describe a symptom →</a></article>
+        <article class="category-card card lift reveal"><div class="category-icon">🤍</div><h3>Emotional Support</h3><p>Talk through fear, uncertainty, stigma, or barriers to care and receive supportive navigation guidance.</p><a href="/portal?topic=support">Get support →</a></article>
+        <article class="category-card card lift reveal"><div class="category-icon">🥗</div><h3>Nutrition & Healthy Living</h3><p>Ask general wellbeing questions and learn healthy habits that can support people during care.</p><a href="/portal?topic=nutrition">Ask about wellbeing →</a></article>
+        <article class="category-card card lift reveal"><div class="category-icon">🫶</div><h3>Survivor & Family Support</h3><p>Find practical information for caregivers, survivors, families, and community support conversations.</p><a href="/portal?topic=survivor">Find support →</a></article>
+        <article class="category-card card lift reveal"><div class="category-icon">🏥</div><h3>Care Navigation</h3><p>Prepare a referral request and connect with a human navigator when your situation needs follow-up.</p><a href="/portal?topic=navigator">Request navigation →</a></article>
+        <article class="category-card card lift reveal"><div class="category-icon">🔐</div><h3>Privacy & Consent</h3><p>Understand what information is stored in this prototype and decide when you want a private case record.</p><a href="/portal?topic=privacy">Learn about privacy →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="media" style="background:#fff">
+    <div class="wrap">
+      <div class="reveal"><span class="eyebrow">Stories, media & learning</span><h2 class="section-title">A warmer way to learn, <span class="gradient-text">not just a chat box.</span></h2><p class="section-copy">The front page now has room for programme photography, survivor stories, educational videos, campaign updates and community highlights. Replace these demo visuals with approved BCIEA media whenever you are ready.</p></div>
+      <div class="story-grid" style="margin-top:34px">
+        <article class="media-main card reveal"><img src="/static/assets/platform-preview.png" alt="BCIEA Care AI interface preview"><div class="media-overlay"><h3>BCIEA Care AI experience</h3><p>A connected public website, conversational portal and staff dashboard designed as one patient-navigation journey.</p></div></article>
+        <div class="media-stack">
+          <article class="mini-media card lift reveal"><img src="/static/assets/screening.svg" alt="Breast screening illustration"><div><h3>Screening education</h3><p>Use this space for screening campaigns, clinic guides, event reminders or approved educational content.</p></div></article>
+          <article class="mini-media card lift reveal"><img src="/static/assets/community.svg" alt="Community support illustration"><div><h3>Community stories</h3><p>Add BCIEA community ambassadors, survivor stories, youth programmes, outreach photos and impact stories.</p></div></article>
+          <article class="mini-media card lift reveal"><img src="/static/assets/care-team.svg" alt="Patient navigation illustration"><div><h3>Patient navigation</h3><p>Show how a person can move from a question to a navigator, screening service or professional assessment.</p></div></article>
+        </div>
+      </div>
+      <div class="video-shell reveal" style="margin-top:24px">
+        <img src="/static/assets/platform-preview.png" alt="Demo video poster">
+        <button class="play-button" type="button" aria-label="Video placeholder">▶</button>
+        <div class="video-copy"><h3>Featured video area</h3><p>Replace this poster with an approved BCIEA awareness or survivor video.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="wrap split">
+      <div class="reveal"><span class="eyebrow">How it works</span><h2 class="section-title">Designed around the <span class="gradient-text">patient journey.</span></h2><p class="section-copy">The AI handles language and conversation while the safety layer controls escalation. A patient can remain anonymous for information, or create a consented case when follow-up is needed.</p><div style="margin-top:24px"><a class="btn primary" href="/portal">Open the AI portal →</a></div></div>
+      <div class="steps">
+        <div class="step reveal"><div class="step-n">01</div><div><h3>Ask naturally</h3><p>Type or use browser voice input in Kinyarwanda or English.</p></div></div>
+        <div class="step reveal"><div class="step-n">02</div><div><h3>Understand the next step</h3><p>The system identifies signals, barriers and urgency while avoiding autonomous diagnosis.</p></div></div>
+        <div class="step reveal"><div class="step-n">03</div><div><h3>Create a case only with consent</h3><p>A public case ID can be created for navigation without forcing a user to share more than needed.</p></div></div>
+        <div class="step reveal"><div class="step-n">04</div><div><h3>Connect to a human</h3><p>Referrals enter the staff dashboard where a navigator can review, update and follow up.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm" id="safety">
+    <div class="wrap cta reveal"><div><h2>Built to assist people — not replace clinicians.</h2><p>This demo is for education, navigation and workflow testing. It cannot diagnose breast cancer, rule it out, or replace in-person medical care. Real patient deployment requires clinician review, security hardening and privacy governance.</p></div><a class="btn primary" style="background:#fff;color:#8c145b;position:relative;z-index:2" href="/portal">Try the demo</a></div>
+  </section>
+
+<section class="u-map" id="network"><div class="wrap"><div class="reveal"><span class="eyebrow">National network</span><h2 class="section-title">From village to AI support, <span class="gradient-text">across all of Rwanda.</span></h2><p class="section-copy">Every question starts in a community. Village reports flow to sector health workers, then to district hubs, where the AI core scores urgency, removes barriers and hands people to a human navigator.</p></div><div class="reveal" data-fx="zoom"><div class="u-stage"><canvas class="rwmap" aria-label="Rotating 3D map of Rwanda showing data flowing from villages through sectors and district hubs to the AI core in Kigali"></canvas>
+<div class="u-legend"><span style="--c:#ffd7eb">Village reports</span><span style="--c:#ff77b6">Sector health workers</span><span style="--c:#fff">District hubs</span><span style="--c:#ff2f92">AI support core</span></div>
+<div class="u-kpis"><div><b>30</b>districts</div><div><b>416</b>sectors</div><div><b>14,837</b>villages</div><div><b data-rw-count>0</b>simulated signals routed</div></div></div>
+<p class="u-note">Illustrative simulation: outline and hub positions are stylised, and traffic is not real patient data. Drag to rotate.</p></div></div></section>
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div><img class="brand-logo" src="/static/assets/bai-logo.svg" alt="BAI BCIEA Care AI"><p style="max-width:400px">A multilingual breast-health education and navigation prototype for BCIEA. Designed for community access, safe triage support and human follow-up.</p></div>
+      <div><h4>Explore</h4><a href="#support">Health topics</a><a href="#impact">Impact</a><a href="#media">Media</a><a href="/portal">AI portal</a></div>
+      <div><h4>Staff</h4><a href="/admin">Dashboard</a><a href="/admin">Referrals</a><a href="/admin">Message centre</a><a href="/admin">Audit</a></div>
+      <div><h4>Important</h4><p>For emergencies or severe symptoms, seek appropriate in-person medical care. Do not rely on this prototype for diagnosis.</p></div>
+    </div>
+    <div class="wrap footer-bottom"><span>© 2026 BCIEA Care AI prototype</span><span>Privacy by design · Human oversight · Multilingual access</span></div>
+  </footer>
+
+  <script src="/static/ui.js"></script>
+<script src="/static/ultra.js"></script>
+<script src="/static/map3d.js"></script>
+</body>
+</html>
