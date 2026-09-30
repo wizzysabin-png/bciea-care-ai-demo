@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: bciea-care-ai-demo
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: APP_NAME
+        value: BCIEA Care AI Demo
+      - key: ADMIN_KEY
+        generateValue: true
+      - key: LLM_MODE
+        value: none
