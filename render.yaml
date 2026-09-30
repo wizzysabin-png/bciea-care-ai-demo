@@ -11,5 +11,7 @@ services:
         value: BCIEA Care AI Demo
       - key: ADMIN_KEY
         generateValue: true
+      - key: DEMO_SEED
+        value: "true"
       - key: LLM_MODE
         value: none

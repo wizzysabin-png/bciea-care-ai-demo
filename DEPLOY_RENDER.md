@@ -20,16 +20,18 @@
    - `APP_NAME=BCIEA Care AI Demo`
    - `ADMIN_KEY=<create a strong secret value>`
    - `LLM_MODE=none`
+   - `DEMO_SEED=true` (loads clearly-labelled FAKE cases so the admin dashboard is not empty; remove for any real use)
 6. Deploy.
 
 ## 3. Open the demo
 Render will give you a URL similar to:
 `https://bciea-care-ai-demo.onrender.com`
 
-Patient demo:
-`https://YOUR-RENDER-URL/`
+Website (news + info): `https://YOUR-RENDER-URL/`
 
-Admin dashboard:
+AI Portal: `https://YOUR-RENDER-URL/portal`
+
+Admin dashboard (enter the `ADMIN_KEY` shown in Render > Environment):
 `https://YOUR-RENDER-URL/admin`
 
 Health test:

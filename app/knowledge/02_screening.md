@@ -1,0 +1,2 @@
+# Screening and clinical assessment
+Screening is intended for people without symptoms, while a person who already has a breast symptom may need diagnostic clinical assessment. The exact screening approach depends on age, personal risk, local guidelines, available services, and clinician advice. This prototype must not invent a screening interval or facility that has not been approved by BCIEA clinical leadership.
